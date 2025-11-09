@@ -7,7 +7,7 @@ const cursorOptionsContainer = document.getElementById("cursorOptions");
 // Update the paths below to match your cursor filenames
 const availableCursors = [
     { id: "default", name: "Default", image: null }, // null means use default cursor
-    { id: "cursor1", name: "Cursor 1", image: "assets/cursors/Wine Glass.png" },
+    { id: "cursor1", name: "Cursor 1", image: "assets/cursors/Wine_Glass.png" },
     { id: "cursor2", name: "Cursor 2", image: "assets/cursors/Berg_Cap.png" },
     { id: "cursor3", name: "Cursor 3", image: "assets/cursors/cursor3.png" },
     // Add more cursors as needed - just add more objects to this array
@@ -70,10 +70,12 @@ function selectCursor(cursorId, save = true) {
     if (cursor && cursor.image) {
         // Custom cursors need hotspot coordinates (x y) - using 0 0 for top-left
         // You can adjust these if your cursor images have a different hotspot
-        cursorStyle = `url(${cursor.image}) 0 0, auto`;
+        // URL encode the path to handle spaces and special characters
+        const imageUrl = encodeURI(cursor.image);
+        cursorStyle = `url("${imageUrl}") 0 0, auto`;
     }
     
-    // Apply to body and create a style element for all elements
+    // Apply to body directly first
     document.body.style.cursor = cursorStyle;
     
     // Remove existing cursor style if it exists
@@ -83,16 +85,14 @@ function selectCursor(cursorId, save = true) {
     }
     
     // Create a style element to apply cursor to all elements
+    // Use CSS.escape for the URL part, or construct the CSS string carefully
     const style = document.createElement("style");
     style.id = "custom-cursor-style";
-    style.textContent = `
-        * {
-            cursor: ${cursorStyle} !important;
-        }
-        .cursor-option {
-            cursor: pointer !important;
-        }
-    `;
+    // Build the CSS rule with proper escaping
+    const cssRule = cursor && cursor.image 
+        ? `url("${encodeURI(cursor.image)}") 0 0, auto`
+        : "default";
+    style.textContent = `* { cursor: ${cssRule} !important; } .cursor-option { cursor: pointer !important; }`;
     document.head.appendChild(style);
     
     // Update awareness (optional - to show others which cursor you selected)
@@ -100,7 +100,7 @@ function selectCursor(cursorId, save = true) {
         window.myAwareness.selectedCursor = cursorId;
     }
     
-    console.log("Cursor changed to:", cursorId, cursorStyle); // Debug log
+    console.log("Cursor changed to:", cursorId, "Style:", cursorStyle); // Debug log
 }
 
 // Cigarette Element Configuration

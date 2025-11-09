@@ -1,0 +1,17 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1440" height="1024" fill="#FFF7B9"/>
+<rect x="634.5" y="54.5" width="728" height="796" rx="18.5" stroke="#FF0000" stroke-width="3"/>
+<rect x="1134" y="416" width="49" height="418" fill="#FF0000"/>
+<rect x="1183" y="388" width="28" height="284" transform="rotate(90 1183 388)" fill="#FF0000"/>
+<rect x="742" y="388" width="28" height="109" transform="rotate(90 742 388)" fill="#FF0000"/>
+<circle cx="678" cy="522" r="34" fill="#FF0000"/>
+<circle cx="678" cy="736" r="34" fill="#FF0000"/>
+<circle cx="1052" cy="338" r="34" transform="rotate(90 1052 338)" fill="#FF0000"/>
+<circle cx="741" cy="108" r="34" transform="rotate(90 741 108)" fill="#FF0000"/>
+<rect x="1227" y="53" width="137" height="228" fill="#FF0000"/>
+<rect x="1290" y="281" width="74" height="135" fill="#FF0000"/>
+<rect x="633" y="187" width="48" height="135" fill="#FF0000"/>
+<rect x="681" y="197" width="22" height="115" fill="#FF0000"/>
+<circle cx="1327" cy="327" r="28" transform="rotate(90 1327 327)" fill="white"/>
+<ellipse cx="1327" cy="327" rx="3.29412" ry="3.29412" transform="rotate(90 1327 327)" fill="#FF0000"/>
+</svg>

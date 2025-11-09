@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #fff;
+    background: #FFF7B9; /* Match the SVG background color */
+}
+
+.bar-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bar-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    z-index: 1;
+    /* SVG is 1440x1024, maintain aspect ratio */
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* Cursor Selector */
+.cursor-selector {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FF0000;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.cursor-selector h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-align: center;
+}
+
+.cursor-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cursor-option {
+    padding: 10px;
+    background: rgba(139, 69, 19, 0.3);
+    border: 2px solid #8b4513;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #fff;
+}
+
+.cursor-option:hover {
+    background: rgba(139, 69, 19, 0.6);
+    transform: scale(1.05);
+    border-color: #ffd700;
+}
+
+.cursor-option.selected {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.cursor-option img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: 0 auto 5px;
+    image-rendering: pixelated;
+}
+
+/* Cigarette Element */
+.cigarette-element {
+    position: absolute;
+    width: 60px;
+    height: 200px;
+    cursor: grab;
+    transition: filter 0.3s ease;
+    z-index: 100;
+}
+
+.cigarette-element:active {
+    cursor: grabbing;
+}
+
+.cigarette-element.dragging {
+    z-index: 100;
+}
+
+.cigarette-visual {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+/* Unlit state */
+.cigarette-unlit {
+    /* Placeholder - will be replaced with asset */
+    background: linear-gradient(to bottom, #f5f5dc 0%, #d2b48c 50%, #8b4513 100%);
+    border-radius: 5px;
+}
+
+/* Lit state */
+.cigarette-lit {
+    /* Placeholder - will be replaced with asset */
+    background: linear-gradient(to bottom, #ff6b35 0%, #f5f5dc 20%, #d2b48c 50%, #8b4513 100%);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.6), 
+                0 0 40px rgba(255, 107, 53, 0.4);
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px rgba(255, 107, 53, 0.6), 
+                    0 0 40px rgba(255, 107, 53, 0.4);
+    }
+    to {
+        box-shadow: 0 0 30px rgba(255, 107, 53, 0.8), 
+                    0 0 60px rgba(255, 107, 53, 0.6);
+    }
+}
+
+/* Smoke effect (optional enhancement) */
+.smoke {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    animation: smoke-rise 2s ease-out infinite;
+}
+
+.cigarette-lit .smoke {
+    opacity: 1;
+}
+
+@keyframes smoke-rise {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-30px) scale(1.5);
+        opacity: 0;
+    }
+}
+

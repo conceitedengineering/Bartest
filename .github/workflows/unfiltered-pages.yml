@@ -1,0 +1,59 @@
+name: Build and Deploy Unfiltered Demo
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-unfiltered-demo
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sync Airtable to JSON
+        if: ${{ secrets.AIRTABLE_TOKEN != '' && secrets.AIRTABLE_BASE_ID != '' && secrets.AIRTABLE_TABLE_NAME != '' }}
+        run: node unfiltered-demo/scripts/sync-airtable.mjs
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_TABLE_NAME: ${{ secrets.AIRTABLE_TABLE_NAME }}
+
+      - name: Keep seeded data (no Airtable secrets configured)
+        if: ${{ secrets.AIRTABLE_TOKEN == '' || secrets.AIRTABLE_BASE_ID == '' || secrets.AIRTABLE_TABLE_NAME == '' }}
+        run: echo "Airtable secrets not configured yet; deploying seeded demo data."
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: unfiltered-demo
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

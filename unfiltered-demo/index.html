@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unfiltered Wine Festival</title>
+    <meta name="description" content="Unfiltered is a one-day wine festival featuring low-intervention winemakers." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="brand" href="#top">Unfiltered</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#makers">Makers</a></li>
+          <li><a href="#tickets">Tickets</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <p class="eyebrow">September 14 • Santa Barbara Coast</p>
+        <h1>Unfiltered</h1>
+        <p class="hero-copy">A one-day gathering of independent winemakers pouring low-intervention wines, plus live sets, sunset talks, and coastal food pop-ups.</p>
+        <a class="hero-cta" href="#tickets">Reserve Passes</a>
+      </section>
+
+      <section id="about" class="about shell section-block">
+        <h2>About The Festival</h2>
+        <p>Unfiltered celebrates people-first winemaking. Meet boutique producers, taste small-batch pours, and discover makers shaping the next era of California wine.</p>
+      </section>
+
+      <section id="makers" class="makers shell section-block" aria-live="polite">
+        <div class="section-head">
+          <h2>Featured Makers</h2>
+          <p>Synced from Airtable CMS data</p>
+        </div>
+        <div id="makers-grid" class="makers-grid"></div>
+      </section>
+
+      <section id="tickets" class="tickets shell section-block">
+        <h2>Tickets</h2>
+        <p>General Admission starts at $85. VIP tasting room access starts at $140.</p>
+        <a class="hero-cta" href="#">Join Waitlist</a>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <p>Unfiltered Wine Festival • Santa Barbara, CA</p>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

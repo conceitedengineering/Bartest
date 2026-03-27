@@ -81,6 +81,7 @@ async function main() {
   const payload = JSON.parse(raw);
   const makers = Array.isArray(payload.makers) ? payload.makers : [];
 
+  await fs.rm(makersRoot, { recursive: true, force: true });
   await fs.mkdir(makersRoot, { recursive: true });
 
   for (const maker of makers) {

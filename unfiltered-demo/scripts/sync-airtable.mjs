@@ -6,6 +6,17 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
 
+function slugify(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 80) || "maker";
+}
+
 function requiredEnv(name) {
   const value = process.env[name];
   if (!value) {
@@ -43,6 +54,7 @@ function mapRecord(record) {
     : null;
 
   return {
+    slug: slugify(name),
     name,
     region: String(fields.Region || "").trim(),
     varietals: String(fields.Varietals || "").trim(),

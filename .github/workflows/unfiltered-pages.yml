@@ -26,17 +26,17 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Sync Airtable to JSON
-        if: ${{ secrets.AIRTABLE_TOKEN != '' && secrets.AIRTABLE_BASE_ID != '' && secrets.AIRTABLE_TABLE_NAME != '' }}
-        run: node unfiltered-demo/scripts/sync-airtable.mjs
+      - name: Sync Airtable to JSON (or keep seeded data)
+        run: |
+          if [ -n "${AIRTABLE_TOKEN}" ] && [ -n "${AIRTABLE_BASE_ID}" ] && [ -n "${AIRTABLE_TABLE_NAME}" ]; then
+            node unfiltered-demo/scripts/sync-airtable.mjs
+          else
+            echo "Airtable secrets not configured yet; deploying seeded demo data."
+          fi
         env:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           AIRTABLE_TABLE_NAME: ${{ secrets.AIRTABLE_TABLE_NAME }}
-
-      - name: Keep seeded data (no Airtable secrets configured)
-        if: ${{ secrets.AIRTABLE_TOKEN == '' || secrets.AIRTABLE_BASE_ID == '' || secrets.AIRTABLE_TABLE_NAME == '' }}
-        run: echo "Airtable secrets not configured yet; deploying seeded demo data."
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

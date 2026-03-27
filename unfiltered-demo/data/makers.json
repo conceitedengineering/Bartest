@@ -1,0 +1,36 @@
+{
+  "festival": "Unfiltered",
+  "updatedAt": "2026-03-27T17:30:00.000Z",
+  "makers": [
+    {
+      "name": "Fenlight Cellars",
+      "region": "Santa Ynez Valley",
+      "varietals": "Grenache, Syrah",
+      "bio": "Small-lot natural wines with native ferments and no fining.",
+      "website": "https://example.com/fenlight",
+      "instagram": "https://instagram.com/fenlight",
+      "photoUrl": "https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=1200&q=80",
+      "displayOrder": 1
+    },
+    {
+      "name": "Silt & Stem",
+      "region": "Arroyo Grande",
+      "varietals": "Chenin Blanc, Pinot Noir",
+      "bio": "Cool-climate vineyard team focused on textured whites and bright reds.",
+      "website": "https://example.com/silt-stem",
+      "instagram": "https://instagram.com/siltstem",
+      "photoUrl": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80",
+      "displayOrder": 2
+    },
+    {
+      "name": "Rook House Wines",
+      "region": "Paso Robles",
+      "varietals": "Zinfandel, Carignan",
+      "bio": "Family-run label bottling old-vine lots with minimal sulfur.",
+      "website": "https://example.com/rook-house",
+      "instagram": "https://instagram.com/rookhouse",
+      "photoUrl": "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=1200&q=80",
+      "displayOrder": 3
+    }
+  ]
+}

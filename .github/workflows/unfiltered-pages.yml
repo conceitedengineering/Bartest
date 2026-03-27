@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -29,7 +32,11 @@ jobs:
       - name: Sync Airtable to JSON (or keep seeded data)
         run: |
           if [ -n "${AIRTABLE_TOKEN}" ] && [ -n "${AIRTABLE_BASE_ID}" ] && [ -n "${AIRTABLE_TABLE_NAME}" ]; then
-            node unfiltered-demo/scripts/sync-airtable.mjs
+            if node unfiltered-demo/scripts/sync-airtable.mjs; then
+              echo "Airtable sync succeeded."
+            else
+              echo "::warning::Airtable sync failed; deploying seeded demo data from unfiltered-demo/data/makers.json."
+            fi
           else
             echo "Airtable secrets not configured yet; deploying seeded demo data."
           fi
